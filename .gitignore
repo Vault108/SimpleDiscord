@@ -1,3 +1,6 @@
 SimpleDiscord/
 settings.json
 old/
+*.log
+.buildozer/
+buildozer.spec
