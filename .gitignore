@@ -1,3 +1,5 @@
-SimpleDiscord/
 settings.json
-old/
+.vscode/
+SimpleDiscordVenv/
+Logs/*
+testing/
