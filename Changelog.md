@@ -1,5 +1,9 @@
 # Simple Discord
- ## 10.10.21
+
+## 10.18.21
+ * Fixed window names
+
+## 10.10.21
   * Renamed project.
   * Added changelog.
   * Edited .pylintrc.
