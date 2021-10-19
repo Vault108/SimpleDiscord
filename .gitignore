@@ -3,3 +3,5 @@ settings.json
 SimpleDiscordVenv/
 Logs/*
 testing/
+simple_discord.exe
+simple_discord.spec
