@@ -6,8 +6,9 @@ ToDo:
  ☐ Add icon
 Working:
   ☐ Add a readme, with directions on how to run and what to do with settings.@low @started
-  ☐ Add a changelog @started
  Done:
+  ✔ Add a changelog @started @done(21-10-19 08:22)
+  ✔ add option to remove logs @done(21-10-19 08:21)
   ✔ Add Settings window with the buttons. @high  @today @started(21-08-12 00:25) @done(21-08-12 00:33) @lasted(8m31s)
   ✔ make webhook text box bigger @high @today @started(21-08-17 04:11) @done(21-08-17 04:11) @lasted(29s)
   ✔ rewrite settings, one window with two input boxes, reference example (username, name) @critical  half done @done(21-08-19 04:11)
