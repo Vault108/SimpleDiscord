@@ -8,11 +8,11 @@ To build the application run the build script for your system.
  
 Linux:
 
-    ./build.sh
+    ./linux.sh
      
 Windows:
 
-    ./build.bat
+    ./windows.bat
 
 
      
