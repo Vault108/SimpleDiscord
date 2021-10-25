@@ -167,8 +167,8 @@ def sendawebhok():
     """
     Send the web hook
     """
-    @ logger.catch
-    @ limits(calls=1, period=10)
+    @logger.catch
+    @limits(calls=1, period=10)
     def realsend():
         try:
             content = msg.get("1.0", "end")
@@ -227,4 +227,5 @@ def sendawebhok():
 logger.add(
     "Logs/{time}.log",
     format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}")
+
 simple_discord()
