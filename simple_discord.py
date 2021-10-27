@@ -14,7 +14,7 @@ from tkinter import Menu
 from discord_webhook import DiscordWebhook
 from loguru import logger
 from ratelimit import limits
-__version__ = "0.0.10a"
+__version__ = "0.0.12a"
 
 
 def simple_discord():
