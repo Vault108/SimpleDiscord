@@ -1,13 +1,16 @@
 """
 A gui to send webhooks to a specified discord channel.
 Written by @Vault108
+
 """
 import tkinter as tk
 import sys
 import os
 import json
+import webbrowser
 from tkinter import Tk
 from tkinter import messagebox
+from tkinter import Menu
 from discord_webhook import DiscordWebhook
 from loguru import logger
 from ratelimit import limits
@@ -20,9 +23,21 @@ def simple_discord():
     """
     logger.success("Simple Discord Started. Version: " + __version__)
     main_window = Tk()
-    main_window.configure(bg="#738ADB")
-    main_window.title("Simple Discord " + __version__)
+    main_window.title("Simple Discord ")
     main_window.resizable(False, False)
+    main_menu = Menu(main_window)
+    main_filemenu = Menu(main_menu, tearoff=0)
+    main_filemenu.add_command(label="Settings", command=settings)
+    main_filemenu.add_command(label="Delete Logs", command=deletelogs)
+    main_filemenu.add_command(label="Exit", command=bye)
+    main_menu.add_cascade(label="Edit", menu=main_filemenu)
+    main_window.configure(bg="#738ADB", menu=main_menu)
+    about_menu = Menu(main_window, tearoff=0, bg="#738ADB",
+                      bd=0, activebackground="#738ADB")
+    about_menu.add_command(label="About", command=about)
+    about_menu.add_command(label="Support", command=bug)
+    main_menu.add_cascade(label="Help", menu=about_menu)
+
     tk.Button(
         main_window,
         text="Send Message",
@@ -52,24 +67,6 @@ def simple_discord():
         bg="#738ADB").grid(
         row=4,
         column=1)
-    tk.Label(
-        main_window,
-        text=__version__,
-        fg="#ffffff",
-        bg="#738ADB").grid(
-        row=1,
-        column=0)
-    tk.Button(
-        main_window,
-        text="Delete Logs",
-        command=deletelogs,
-        bd="0",
-        bg="#738ADB",
-        width="10",
-        fg="white").grid(
-        row=3,
-        column=1)
-
     main_window.mainloop()
 
 
@@ -224,8 +221,34 @@ def sendawebhok():
     msgbody.mainloop()
 
 
+def about():
+    """
+    The about window
+    """
+    about_window = Tk()
+    about_window.title("About ")
+    about_window.configure(bg="#738ADB")
+    about_window.resizable(False, False)
+    tk.Label(about_window, bg="#738ADB",
+             text="Version: " + __version__).grid(row=1, column=1)
+    tk.Label(about_window, bg="#738ADB",
+             text="Written by: Vault108").grid(row=2, column=1)
+    tk.Label(about_window, bg="#738ADB",
+             text="License: GNU GPL V3 ").grid(row=3, column=1)
+    about_window.mainloop()
+
+
+def bug():
+    """
+    Open an issue on GitHub.
+    """
+    webbrowser.open_new(
+        "https://github.com/Vault108/SimpleDiscord/issues/new/choose?")
+
+
 logger.add(
     "Logs/{time}.log",
     format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}")
 
-simple_discord()
+if __name__ == "__main__":
+    simple_discord()
