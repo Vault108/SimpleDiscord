@@ -14,7 +14,7 @@ from tkinter import Menu
 from discord_webhook import DiscordWebhook
 from loguru import logger
 from ratelimit import limits
-__version__ = "0.0.12a"
+__version__ = "0.0.13a"
 
 
 def simple_discord():
@@ -26,14 +26,15 @@ def simple_discord():
     main_window.title("Simple Discord ")
     main_window.resizable(False, False)
     main_menu = Menu(main_window)
-    main_filemenu = Menu(main_menu, tearoff=0)
+    main_filemenu = Menu(main_menu, tearoff=0,
+                      bd=0, activebackground="#ffffff")
     main_filemenu.add_command(label="Settings", command=settings)
     main_filemenu.add_command(label="Delete Logs", command=deletelogs)
     main_filemenu.add_command(label="Exit", command=bye)
     main_menu.add_cascade(label="Edit", menu=main_filemenu)
     main_window.configure(bg="#738ADB", menu=main_menu)
-    about_menu = Menu(main_window, tearoff=0, bg="#738ADB",
-                      bd=0, activebackground="#738ADB")
+    about_menu = Menu(main_window, tearoff=0,
+                      bd=0, activebackground="#ffffff")
     about_menu.add_command(label="About", command=about)
     about_menu.add_command(label="Support", command=bug)
     main_menu.add_cascade(label="Help", menu=about_menu)
@@ -42,6 +43,8 @@ def simple_discord():
         main_window,
         text="Send Message",
         command=sendawebhok,
+        highlightthickness = 0,
+        width = 20,
         bd="0",
         fg="#ffffff",
         bg="#738ADB",).grid(
@@ -51,6 +54,7 @@ def simple_discord():
         main_window,
         text="Settings",
         command=settings,
+        highlightthickness = 0,      
         width="20",
         bd="0",
         fg="#ffffff",
@@ -61,6 +65,7 @@ def simple_discord():
         main_window,
         text="Exit",
         command=bye,
+        highlightthickness = 0,
         width="20",
         bd="0",
         fg="#ffffff",
@@ -143,6 +148,7 @@ def settings():
         settings_window,
         text="Save",
         command=settingsdump,
+        highlightthickness = 0,
         bd="0",
         bg="#738ADB",
         width="5",
@@ -204,6 +210,7 @@ def sendawebhok():
         msgbody,
         text="Send",
         command=realsend,
+        highlightthickness = 0,
         bd="0",
         bg="#738ADB",
         fg="white").grid(
@@ -213,6 +220,7 @@ def sendawebhok():
         msgbody,
         text="Main Menu",
         command=msgbody.destroy,
+        highlightthickness = 0,
         bd="0",
         bg="#738ADB",
         fg="white").grid(
