@@ -27,7 +27,7 @@ def simple_discord():
     main_window.resizable(False, False)
     main_menu = Menu(main_window)
     main_filemenu = Menu(main_menu, tearoff=0,
-                      bd=0, activebackground="#ffffff")
+                         bd=0, activebackground="#ffffff")
     main_filemenu.add_command(label="Settings", command=settings)
     main_filemenu.add_command(label="Delete Logs", command=deletelogs)
     main_filemenu.add_command(label="Exit", command=bye)
@@ -43,8 +43,8 @@ def simple_discord():
         main_window,
         text="Send Message",
         command=sendawebhok,
-        highlightthickness = 0,
-        width = 20,
+        highlightthickness=0,
+        width=20,
         bd="0",
         fg="#ffffff",
         bg="#738ADB",).grid(
@@ -54,7 +54,7 @@ def simple_discord():
         main_window,
         text="Settings",
         command=settings,
-        highlightthickness = 0,      
+        highlightthickness=0,
         width="20",
         bd="0",
         fg="#ffffff",
@@ -65,7 +65,7 @@ def simple_discord():
         main_window,
         text="Exit",
         command=bye,
-        highlightthickness = 0,
+        highlightthickness=0,
         width="20",
         bd="0",
         fg="#ffffff",
@@ -148,7 +148,7 @@ def settings():
         settings_window,
         text="Save",
         command=settingsdump,
-        highlightthickness = 0,
+        highlightthickness=0,
         bd="0",
         bg="#738ADB",
         width="5",
@@ -210,7 +210,7 @@ def sendawebhok():
         msgbody,
         text="Send",
         command=realsend,
-        highlightthickness = 0,
+        highlightthickness=0,
         bd="0",
         bg="#738ADB",
         fg="white").grid(
@@ -220,7 +220,7 @@ def sendawebhok():
         msgbody,
         text="Main Menu",
         command=msgbody.destroy,
-        highlightthickness = 0,
+        highlightthickness=0,
         bd="0",
         bg="#738ADB",
         fg="white").grid(
