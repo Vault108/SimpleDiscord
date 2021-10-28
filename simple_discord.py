@@ -1,7 +1,6 @@
 """
 A gui to send webhooks to a specified discord channel.
 Written by @Vault108
-
 """
 import tkinter as tk
 import sys
@@ -38,7 +37,6 @@ def simple_discord():
     about_menu.add_command(label="About", command=about)
     about_menu.add_command(label="Support", command=bug)
     main_menu.add_cascade(label="Help", menu=about_menu)
-
     tk.Button(
         main_window,
         text="Send Message",
@@ -257,6 +255,7 @@ def bug():
 logger.add(
     "Logs/{time}.log",
     format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}")
+
 
 if __name__ == "__main__":
     simple_discord()
