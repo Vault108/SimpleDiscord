@@ -246,7 +246,7 @@ def about():
 
 def bug():
     """
-    Open an issue on GitHub.
+    Something not working right? Have a question? Need some help? This function will help you open an issue on github. 
     """
     webbrowser.open_new(
         "https://github.com/Vault108/SimpleDiscord/issues/new/choose?")
