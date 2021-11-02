@@ -1,5 +1,0 @@
-pyinstaller simple_discord.py -w --onedir -p "/"
-rd /S /Q "__pycache__/" 
-rd /S /Q "build\"
-del ".\simple_discord.spec"
-rd /S /Q "dist\"
