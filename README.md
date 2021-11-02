@@ -36,7 +36,7 @@
 <h3 align="center">Simple Discord</h3>
 
   <p align="center">
-    Simple GUI written in tkinter to send messages using a  webhook to Discord.
+    Simple GUI written in tkinter to send messages using a webhook to Discord.
     <br />
     <a href="https://github.com/Vault108/SimpleDiscord/issues">Report Bug</a>
     ·
@@ -91,8 +91,6 @@ Simple Discord is a GUI written in Python, using the tkinter library. Its goal i
 
 To get a local copy up and running follow these simple example steps.
 ### Installation
-_We have three different ways to get the program installed._
-### Way Number 1:
 1. Clone the repo
    ```sh
    git clone https://github.com/Vault108/SimpleDiscord.git
@@ -107,18 +105,19 @@ _We have three different ways to get the program installed._
    python3 simple_discord.py
    ```
 ### Way Number 2:
-  1. Download the `exe` or  `bin` file from the [Releases](https://github.com/Vault108/SimpleDiscord/releases).
-  2. Run the `exe` or `bin` file.
-### Way Number 3:
-  1. Build the program your self. 
-     Please see [Building](https://github.com/Vault108/SimpleDiscord/Build.md) for the directions. 
+  1. Download the compressed source from the [Releases](https://github.com/Vault108/SimpleDiscord/releases).
+  2. Unpack and run the python file
+     ```sh 
+     python3 simple_discord.py
+     ```
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- Settings  -->
 ## Settings
 
-Simply open the settings window and insert your `webhook url` and the `username` you would like to use. Press save and you are now able to send webhooks. 
+Simply open the settings and provide your `webhook url` and the `username` you would like to use. Press save and you are now able to send webhooks. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -140,7 +139,7 @@ Project Link: [https://github.com/Vault108/SimpleDiscord](https://github.com/Vau
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-   
+
 * [Discord](https://discord.com/)
 * [Othneildrew](https://github.com/othneildrew/Best-README-Template)
 
