@@ -118,7 +118,7 @@ _We have three different ways to get the program installed._
 <!-- Settings  -->
 ## Settings
 
-Simply open the settings window and insert your `webhook url` and the `user` name you would like to use. Press save and you are now able to send webhooks. 
+Simply open the settings window and insert your `webhook url` and the `username` you would like to use. Press save and you are now able to send webhooks. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
