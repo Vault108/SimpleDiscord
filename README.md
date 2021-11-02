@@ -66,6 +66,7 @@
 <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#special-thanks">Special Thanks</a></li>
   </ol>
 </details>
 
