@@ -1,5 +1,9 @@
 # Simple Discord
 
+## 11.1.21
+ * Cleaned up .gitignore format
+ * Used Best-README-Template for readme 
+
 ## 10.19.21
  * Renamed Default-settings.json to settings.json.
  * Added a build script to generate an exe / bin file.

@@ -1,7 +1,10 @@
 settings.json
+simple_discord.exe
+simple_discord.spec
+simple_discord.bin
 .vscode/
 SimpleDiscordVenv/
 Logs/*
 testing/
-simple_discord.exe
-simple_discord.spec
+Icons/
+TODO
