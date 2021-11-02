@@ -125,7 +125,7 @@ Simply open the settings window and insert your `webhook url` and the `user` nam
 <!-- LICENSE -->
 ## License
 
-Distributed under the GNU GPL V3. See `LICENSE.txt` for more information.
+Distributed under the GNU GPL V3. See `LICENSE` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -164,4 +164,4 @@ Project Link: [https://github.com/Vault108/SimpleDiscord](https://github.com/Vau
 [issues-shield]: https://img.shields.io/github/issues/Vault108/SimpleDiscord.svg?style=for-the-badge
 [issues-url]: https://github.com/Vault108/SimpleDiscord/issues
 [license-shield]: https://img.shields.io/github/license/Vault108/SimpleDiscord.svg?style=for-the-badge
-[license-url]: https://github.com/Vault108/SimpleDiscord/blob/master/LICENSE.txt
+[license-url]: https://github.com/Vault108/SimpleDiscord/blob/master/LICENSE
