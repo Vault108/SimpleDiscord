@@ -172,7 +172,7 @@ def sendawebhok():
     @limits(calls=1, period=10)
     def realsend():
         """
-        Actual sending of the webhook.  
+        Actual sending of the webhook.
         """
         try:
             content = msg.get("1.0", "end")
