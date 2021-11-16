@@ -93,7 +93,7 @@ def settings():
     @logger.catch
     def settingsdump():
         """
-        function to dump settings
+        Function to dump settings
         """
         username = usernameinputwindow.get(
             "1.0", "end").strip("\t").strip("\n,.")
@@ -171,6 +171,9 @@ def sendawebhok():
     @logger.catch
     @limits(calls=1, period=10)
     def realsend():
+        """
+        Actual sending of the webhook.  
+        """
         try:
             content = msg.get("1.0", "end")
             with open("settings.json", encoding="utf-8") as settings_file:
