@@ -26,14 +26,14 @@ def simple_discord():
     main_window.resizable(False, False)
     main_menu = Menu(main_window)
     main_filemenu = Menu(main_menu, tearoff=0,
-                         bd=0, activebackground="#ffffff")
+                         bd=0, activebackground="#738ADB")
     main_filemenu.add_command(label="Settings", command=settings)
     main_filemenu.add_command(label="Delete Logs", command=deletelogs)
     main_filemenu.add_command(label="Exit", command=bye)
     main_menu.add_cascade(label="Edit", menu=main_filemenu)
     main_window.configure(bg="#738ADB", menu=main_menu)
     about_menu = Menu(main_window, tearoff=0,
-                      bd=0, activebackground="#ffffff")
+                      bd=0, activebackground="#738ADB")
     about_menu.add_command(label="About", command=about)
     about_menu.add_command(label="Support", command=bug)
     main_menu.add_cascade(label="Help", menu=about_menu)
