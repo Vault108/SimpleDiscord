@@ -2,7 +2,8 @@
 
 ## 12.14.21
  * Background color of menu tab changed from with to Discord blue.
- 
+ * Updated `.pylintrc`.
+
 ## 11.2.21
  * Dropped build support for the time being.
  * Updated `readme` and removed build scripts for all platforms.
