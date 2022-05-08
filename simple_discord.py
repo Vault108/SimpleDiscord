@@ -40,7 +40,7 @@ def simple_discord():
     tk.Button(
         main_window,
         text="Send Message",
-        command=sendawebhok,
+        command=sendawebhook,
         highlightthickness=0,
         width=20,
         bd="0",
@@ -164,7 +164,7 @@ def bye():
     sys.exit()
 
 
-def sendawebhok():
+def sendawebhook():
     """
     Send the web hook
     """
