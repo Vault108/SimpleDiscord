@@ -155,7 +155,6 @@ def settings():
         column=1)
     settings_window.mainloop()
 
-
 def bye():
     """
     Quits the program
