@@ -1,5 +1,10 @@
 # Simple Discord
 
+## 5.31.22
+ * Swittched to Structlog
+ * Added Autogeneration of the `settings.json` file if one was not Found.
+ * Making changes for a major rewrite with support for other apps, such as Slack, Teams and others. 
+ 
 ## 12.14.21
  * Background color of menu tab changed from with to Discord blue.
  * Updated `.pylintrc`.
