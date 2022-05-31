@@ -17,6 +17,8 @@ import structlog
 import requests
 __version__ = "0.0.14a"
 logger = structlog.get_logger("SimpleWebhook")
+
+
 def simple_discord():
     """
     Main Window
@@ -155,6 +157,7 @@ def settings():
         column=1)
     settings_window.mainloop()
 
+
 def bye():
     """
     Quits the program
@@ -162,14 +165,16 @@ def bye():
     logger.info("Simple Discord Ended")
     sys.exit()
 
+
 def generate_settings():
     """
     Generate a Valid Settings File
     """
     valid = "https://raw.githubusercontent.com/Vault108/SimpleDiscord/dev/settings.json"
     save = requests.get(valid)
-    open("settings.json","wb").write(save.content)
-    
+    open("settings.json", "wb").write(save.content)
+
+
 def sendawebhok():
     """
     Send the web hook
@@ -198,8 +203,7 @@ def sendawebhok():
                 "A Valid Settings File was not found, we generated one.")
             messagebox.showerror(
                 title="Settings File Not Found",
-                message=
-                "A Valid Settings File was not found, we generated one.")
+                message="A Valid Settings File was not found, we generated one.")
         generate_settings()
     msgbody = tk.Tk()
     msgbody.title("Webhook Messssage Input")
@@ -261,6 +265,7 @@ def bug():
     """
     webbrowser.open_new(
         "https://github.com/Vault108/SimpleDiscord/issues/new/choose?")
+
 
 if __name__ == "__main__":
     simple_discord()
