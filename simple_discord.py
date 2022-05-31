@@ -2,6 +2,7 @@
 A gui to send webhooks to a specified discord channel.
 Written by @Vault108
 """
+
 import tkinter as tk
 import sys
 import os
@@ -11,16 +12,16 @@ from tkinter import Tk
 from tkinter import messagebox
 from tkinter import Menu
 from discord_webhook import DiscordWebhook
-from loguru import logger
 from ratelimit import limits
+import structlog
+import requests
 __version__ = "0.0.14a"
-
-
+logger = structlog.get_logger("SimpleWebhook")
 def simple_discord():
     """
     Main Window
     """
-    logger.success("Simple Discord Started. Version: " + __version__)
+    logger.info("Simple Discord Started. Version: " + __version__)
     main_window = Tk()
     main_window.title("Simple Discord ")
     main_window.resizable(False, False)
@@ -90,14 +91,13 @@ def settings():
     """
     The settings.
     """
-    @logger.catch
     def settingsdump():
         """
         Function to dump settings
         """
         username = usernameinputwindow.get(
             "1.0", "end").strip("\t").strip("\n,.")
-        logger.info("Added Username " + username)
+        logger.info("Added Username ",  value=username)
         webhook = urlinputwindow.get("1.0", "end").strip("\n")
         logger.info("Added Webhook ")  # Do not log url for webhook
         data = {
@@ -160,15 +160,21 @@ def bye():
     """
     Quits the program
     """
-    logger.success("Simple Discord Ended")
+    logger.info("Simple Discord Ended")
     sys.exit()
 
-
+def generate_settings():
+    """
+    Generate a Valid Settings File
+    """
+    valid = "https://raw.githubusercontent.com/Vault108/SimpleDiscord/dev/settings.json"
+    save = requests.get(valid)
+    open("settings.json","wb").write(save.content)
+    
 def sendawebhok():
     """
     Send the web hook
     """
-    @logger.catch
     @limits(calls=1, period=10)
     def realsend():
         """
@@ -187,13 +193,15 @@ def sendawebhok():
                 content=content)
             webhook.timeout = 20
             response = webhook.execute()
-            logger.success(response)
+            logger.info(response)
         except FileNotFoundError:
             logger.error(
-                "Please check your settings")
+                "A Valid Settings File was not found, we generated one.")
             messagebox.showerror(
-                title="No Url or Username set!",
-                message="Please check your settings.")
+                title="Settings File Not Found",
+                message=
+                "A Valid Settings File was not found, we generated one.")
+        generate_settings()
     msgbody = tk.Tk()
     msgbody.title("Webhook Messssage Input")
     msgbody.configure(
@@ -254,12 +262,6 @@ def bug():
     """
     webbrowser.open_new(
         "https://github.com/Vault108/SimpleDiscord/issues/new/choose?")
-
-
-logger.add(
-    "Logs/{time}.log",
-    format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}")
-
 
 if __name__ == "__main__":
     simple_discord()
