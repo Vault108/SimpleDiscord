@@ -29,7 +29,8 @@ def simple_discord():
     main_window.title("Simple Discord ")
     main_window.resizable(False, False)
     main_menu = Menu(main_window)
-    main_filemenu = Menu(main_menu, tearoff=0, bd=0, activebackground="#738ADB")
+    main_filemenu = Menu(main_menu, tearoff=0, bd=0,
+                         activebackground="#738ADB")
     main_filemenu.add_command(label="Settings", command=settings)
     main_filemenu.add_command(label="Delete Logs", command=deletelogs)
     main_filemenu.add_command(label="Exit", command=bye)
@@ -94,7 +95,8 @@ def settings():
         """
         Function to dump settings
         """
-        username = usernameinputwindow.get("1.0", "end").strip("\t").strip("\n,.")
+        username = usernameinputwindow.get(
+            "1.0", "end").strip("\t").strip("\n,.")
         logger.info("Added Username ", value=username)
         webhook = urlinputwindow.get("1.0", "end").strip("\n")
         logger.info("Added Webhook ")  # Do not log url for webhook
@@ -171,7 +173,8 @@ def sendawebhok():
             webhook.notify(body=content)
             logger.info("Webhook sent")
         except FileNotFoundError:
-            logger.error("A Valid Settings File was not found, we generated one.")
+            logger.error(
+                "A Valid Settings File was not found, we generated one.")
             messagebox.showerror(
                 title="Settings File Not Found",
                 message="A Valid Settings File was not found, we generated one.",
@@ -230,7 +233,8 @@ def bug():
     Something not working right? Have a question? Need some help?
     This function will help you open an issue on github.
     """
-    webbrowser.open_new("https://github.com/Vault108/SimpleDiscord/issues/new/choose?")
+    webbrowser.open_new(
+        "https://github.com/Vault108/SimpleDiscord/issues/new/choose?")
 
 
 if __name__ == "__main__":
