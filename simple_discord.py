@@ -11,13 +11,12 @@ import webbrowser
 from tkinter import Tk
 from tkinter import messagebox
 from tkinter import Menu
-from discord_webhook import DiscordWebhook
 from ratelimit import limits
 import structlog
 import requests
 import apprise
 
-__version__ = "0.0.14a"
+__version__ = "0.0.15a"
 logger = structlog.get_logger("SimpleWebhook")
 
 
