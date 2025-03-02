@@ -15,6 +15,8 @@ from discord_webhook import DiscordWebhook
 from ratelimit import limits
 import structlog
 import requests
+import apprise
+
 __version__ = "0.0.14a"
 logger = structlog.get_logger("SimpleWebhook")
 
@@ -28,15 +30,13 @@ def simple_discord():
     main_window.title("Simple Discord ")
     main_window.resizable(False, False)
     main_menu = Menu(main_window)
-    main_filemenu = Menu(main_menu, tearoff=0,
-                         bd=0, activebackground="#738ADB")
+    main_filemenu = Menu(main_menu, tearoff=0, bd=0, activebackground="#738ADB")
     main_filemenu.add_command(label="Settings", command=settings)
     main_filemenu.add_command(label="Delete Logs", command=deletelogs)
     main_filemenu.add_command(label="Exit", command=bye)
     main_menu.add_cascade(label="Edit", menu=main_filemenu)
     main_window.configure(bg="#738ADB", menu=main_menu)
-    about_menu = Menu(main_window, tearoff=0,
-                      bd=0, activebackground="#738ADB")
+    about_menu = Menu(main_window, tearoff=0, bd=0, activebackground="#738ADB")
     about_menu.add_command(label="About", command=about)
     about_menu.add_command(label="Support", command=bug)
     main_menu.add_cascade(label="Help", menu=about_menu)
@@ -48,9 +48,8 @@ def simple_discord():
         width=20,
         bd="0",
         fg="#ffffff",
-        bg="#738ADB",).grid(
-        row=1,
-        column=1)
+        bg="#738ADB",
+    ).grid(row=1, column=1)
     tk.Button(
         main_window,
         text="Settings",
@@ -59,9 +58,8 @@ def simple_discord():
         width="20",
         bd="0",
         fg="#ffffff",
-        bg="#738ADB").grid(
-        row=2,
-        column=1)
+        bg="#738ADB",
+    ).grid(row=2, column=1)
     tk.Button(
         main_window,
         text="Exit",
@@ -70,9 +68,8 @@ def simple_discord():
         width="20",
         bd="0",
         fg="#ffffff",
-        bg="#738ADB").grid(
-        row=4,
-        column=1)
+        bg="#738ADB",
+    ).grid(row=4, column=1)
     main_window.mainloop()
 
 
@@ -93,57 +90,35 @@ def settings():
     """
     The settings.
     """
+
     def settingsdump():
         """
         Function to dump settings
         """
-        username = usernameinputwindow.get(
-            "1.0", "end").strip("\t").strip("\n,.")
-        logger.info("Added Username ",  value=username)
+        username = usernameinputwindow.get("1.0", "end").strip("\t").strip("\n,.")
+        logger.info("Added Username ", value=username)
         webhook = urlinputwindow.get("1.0", "end").strip("\n")
         logger.info("Added Webhook ")  # Do not log url for webhook
-        data = {
-            "webhook": webhook,
-            "username": username
-        }
+        data = {"webhook": webhook, "username": username}
         with open("settings.json", "w", encoding="utf-8") as json_file:
             json.dump(data, json_file, sort_keys=True, indent=4)
             json_file.close()
         settings_window.destroy()
+
     settings_window = Tk()
     settings_window.configure(bg="#738ADB")
     settings_window.title("Settings")
     settings_window.resizable(False, False)
-    urlinputwindow = tk.Text(
-        settings_window,
-        height=4)
-    urlinputwindow.grid(
-        row=2,
-        column=1,
-        padx=5,
-        pady=5)
-    usernameinputwindow = tk.Text(
-        settings_window,
-        height=1)
-    usernameinputwindow.grid(
-        row=0,
-        column=1,
-        padx=5,
-        pady=5)
+    urlinputwindow = tk.Text(settings_window, height=4)
+    urlinputwindow.grid(row=2, column=1, padx=5, pady=5)
+    usernameinputwindow = tk.Text(settings_window, height=1)
+    usernameinputwindow.grid(row=0, column=1, padx=5, pady=5)
+    tk.Label(settings_window, fg="white", background="#738ADB", text="Username").grid(
+        row=0, column=0
+    )
     tk.Label(
-        settings_window,
-        fg="white",
-        background="#738ADB",
-        text="Username").grid(
-        row=0,
-        column=0)
-    tk.Label(
-        settings_window,
-        fg="white",
-        background="#738ADB",
-        text="Webhook URL").grid(
-        row=2,
-        column=0)
+        settings_window, fg="white", background="#738ADB", text="Webhook URL"
+    ).grid(row=2, column=0)
     tk.Button(
         settings_window,
         text="Save",
@@ -152,9 +127,8 @@ def settings():
         bd="0",
         bg="#738ADB",
         width="5",
-        fg="white").grid(
-        row=4,
-        column=1)
+        fg="white",
+    ).grid(row=4, column=1)
     settings_window.mainloop()
 
 
@@ -179,6 +153,7 @@ def sendawebhok():
     """
     Send the web hook
     """
+
     @limits(calls=1, period=10)
     def realsend():
         """
@@ -191,33 +166,25 @@ def sendawebhok():
                 url = settingjson["webhook"]
                 uname = settingjson["username"]
                 settings_file.close()
-            webhook = DiscordWebhook(
-                url=url,
-                username=uname,
-                content=content)
-            webhook.timeout = 20
-            response = webhook.execute()
-            logger.info(response)
+            webhook = apprise.Apprise()
+            webhook.add(url + "?botname=" + uname)
+            logger.info(url + "?botname=" + uname)
+            webhook.notify(body=content)
+            logger.info("Webhook sent")
         except FileNotFoundError:
-            logger.error(
-                "A Valid Settings File was not found, we generated one.")
+            logger.error("A Valid Settings File was not found, we generated one.")
             messagebox.showerror(
                 title="Settings File Not Found",
-                message="A Valid Settings File was not found, we generated one.")
-        generate_settings()
+                message="A Valid Settings File was not found, we generated one.",
+            )
+            generate_settings()
+
     msgbody = tk.Tk()
     msgbody.title("Webhook Messssage Input")
-    msgbody.configure(
-        bg="#738ADB")
+    msgbody.configure(bg="#738ADB")
     msgbody.geometry("")
-    msg = tk.Text(
-        msgbody,
-        height=10)
-    msg.grid(
-        row=2,
-        column=2,
-        padx=5,
-        pady=5)
+    msg = tk.Text(msgbody, height=10)
+    msg.grid(row=2, column=2, padx=5, pady=5)
     tk.Button(
         msgbody,
         text="Send",
@@ -225,9 +192,8 @@ def sendawebhok():
         highlightthickness=0,
         bd="0",
         bg="#738ADB",
-        fg="white").grid(
-        row=3,
-        column=2)
+        fg="white",
+    ).grid(row=3, column=2)
     tk.Button(
         msgbody,
         text="Main Menu",
@@ -235,9 +201,8 @@ def sendawebhok():
         highlightthickness=0,
         bd="0",
         bg="#738ADB",
-        fg="white").grid(
-        row=4,
-        column=2)
+        fg="white",
+    ).grid(row=4, column=2)
     msgbody.mainloop()
 
 
@@ -249,12 +214,15 @@ def about():
     about_window.title("About ")
     about_window.configure(bg="#738ADB")
     about_window.resizable(False, False)
-    tk.Label(about_window, bg="#738ADB",
-             text="Version: " + __version__).grid(row=1, column=1)
-    tk.Label(about_window, bg="#738ADB",
-             text="Written by: Vault108").grid(row=2, column=1)
-    tk.Label(about_window, bg="#738ADB",
-             text="License: GNU GPL V3 ").grid(row=3, column=1)
+    tk.Label(about_window, bg="#738ADB", text="Version: " + __version__).grid(
+        row=1, column=1
+    )
+    tk.Label(about_window, bg="#738ADB", text="Written by: Vault108").grid(
+        row=2, column=1
+    )
+    tk.Label(about_window, bg="#738ADB", text="License: GNU GPL V3 ").grid(
+        row=3, column=1
+    )
     about_window.mainloop()
 
 
@@ -263,8 +231,7 @@ def bug():
     Something not working right? Have a question? Need some help?
     This function will help you open an issue on github.
     """
-    webbrowser.open_new(
-        "https://github.com/Vault108/SimpleDiscord/issues/new/choose?")
+    webbrowser.open_new("https://github.com/Vault108/SimpleDiscord/issues/new/choose?")
 
 
 if __name__ == "__main__":
