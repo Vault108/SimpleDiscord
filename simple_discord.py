@@ -4,7 +4,6 @@ Written by @Vault108
 """
 
 import tkinter as tk
-import sys
 import os
 import json
 import webbrowser
@@ -13,10 +12,9 @@ from tkinter import messagebox
 from tkinter import Menu
 from ratelimit import limits
 import structlog
-import requests
 import apprise
 
-__version__ = "0.0.15a"
+__version__ = "0.0.16a"
 logger = structlog.get_logger("SimpleWebhook")
 
 
@@ -136,16 +134,21 @@ def bye():
     Quits the program
     """
     logger.info("Simple Discord Ended")
-    sys.exit()
+    quit()
 
 
 def generate_settings():
     """
     Generate a Valid Settings File
     """
-    valid = "https://raw.githubusercontent.com/Vault108/SimpleDiscord/dev/settings.json"
-    save = requests.get(valid)
-    open("settings.json", "wb").write(save.content)
+    settings = {
+        "webhook": "your_webhook_url_here",
+        "username": "Your_Username_Here"
+    }
+    with open("settings.json", "w", encoding="utf8") as file:
+        json.dump(settings, file, indent=4)
+        logger.info("Generated Settings File")
+        file.close()
 
 
 def sendawebhok():
@@ -167,7 +170,6 @@ def sendawebhok():
                 settings_file.close()
             webhook = apprise.Apprise()
             webhook.add(url + "?botname=" + uname)
-            logger.info(url + "?botname=" + uname)
             webhook.notify(body=content)
             logger.info("Webhook sent")
         except FileNotFoundError:

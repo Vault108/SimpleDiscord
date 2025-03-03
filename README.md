@@ -74,7 +74,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Simple Discord is a GUI written in Python, using the tkinter library. Its goal is to provide a simple and seamless way to send webhooks to a Discord server. 
+Simple Discord is a GUI written in Python, using the tkinter library. Its goal is to provide a simple and seamless way to send webhooks to a Discord server.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
@@ -108,7 +108,7 @@ To get a local copy up and running follow these simple example steps.
 ### Way Number 2:
   1. Download the compressed source from the [Releases](https://github.com/Vault108/SimpleDiscord/releases).
   2. Unpack and run the python file
-     ```sh 
+     ```sh
      python3 simple_discord.py
      ```
 
@@ -118,7 +118,7 @@ To get a local copy up and running follow these simple example steps.
 <!-- Settings  -->
 ## Settings
 
-Simply open the settings and provide your `webhook url` and the `username` you would like to use. Press save and you are now able to send webhooks. 
+Simply open the settings and provide your `webhook url` and the `username` you would like to use. Press save and you are now able to send webhooks.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
